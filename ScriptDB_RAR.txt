@@ -1,0 +1,55 @@
+
+CREATE DATABASE RabicoinARagots;
+
+USE RabicoinARagots;
+
+create table USER
+(
+USER_ID Integer Not Null auto_increment,
+FIRSTNAME Varchar(20) Not Null,
+LASTNAME Varchar(30) Not Null,
+LOGIN Varchar(30) Not Null,
+PASSWORD Varchar(30) Not Null,
+constraint PK_USER primary key(USER_ID)
+)
+;
+
+create table ARTICLE
+(
+ARTICLE_ID Integer Not Null auto_increment,
+USER_ID Integer Not Null,
+TITLE Varchar(30) Not Null,
+ARTICLE_DESCRIPTION TEXT Not Null,
+ARTICLE_CONTENT TEXT Not Null,
+ARTICLE_DATE Date Not Null, 
+constraint PK_ARTICLE primary key(ARTICLE_ID),
+constraint FK_ARTICLE foreign key(USER_ID)
+references USER(USER_ID)
+)
+;
+
+create table COMMENT
+(
+COMMENT_ID Integer Not Null auto_increment,
+COMMENT_CONTENT TEXT Not Null,
+COMMENT_DATE Date Not Null,
+ARTICLE_ID Integer Not Null, 
+USER_ID Integer Not Null,
+constraint PK_COMMENT primary key(COMMENT_ID),
+constraint FK1_COMMENT foreign key(ARTICLE_ID)
+references ARTICLE(ARTICLE_ID),
+constraint FK2_COMMENT foreign key(USER_ID)
+references USER(USER_ID)
+)
+;
+
+insert into USER values(Null, 'John', 'Doe', '123', '123');
+
+insert into ARTICLE values(Null, 1, 'Lorem ipsum dolor sit amet.', 'Sed convallis quam nec ex efficitur, ut consectetur leo sollicitudin. Sed tempus nibh a erat accumsan dapibus. Aenean congue nulla ac velit posuere eleifend. Pellentesque consectetur blandit neque quis consequat. Donec maximus eu odio eget malesuada. Mauris non tristique dolor, quis accumsan arcu. Duis et dictum felis, fermentum ornare sem. Fusce vitae scelerisque justo. Fusce lectus magna, ultrices convallis volutpat.', 'Maecenas in commodo enim. Ut mollis et dolor non posuere. Donec lacinia, justo sed tristique venenatis, urna mi auctor libero, vitae sollicitudin nunc tortor sed nisl. Phasellus quis efficitur diam. In porttitor, orci ac finibus efficitur, neque arcu vehicula justo, non sagittis diam odio ut eros. Ut tincidunt, erat eu gravida ullamcorper, mauris nulla malesuada urna, ut porttitor dui arcu vitae felis. Sed elit odio, volutpat sit amet venenatis in, sagittis interdum turpis. Morbi congue pulvinar lectus. Pellentesque venenatis ipsum non lorem vulputate, vel condimentum metus consequat. Sed aliquam arcu eget massa posuere, ut elementum dui tincidunt. Suspendisse at finibus diam. Quisque luctus sagittis nisl id eleifend. Quisque vehicula eu metus id accumsan. Quisque quis nisl semper, rutrum leo vitae, rutrum urna. Nullam neque purus, placerat sit amet euismod sit amet, ullamcorper at sapien. Ut at risus vulputate, fringilla felis nec, blandit lectus.
+Aliquam a egestas lorem, quis pulvinar enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut sodales, justo vitae malesuada tempus, elit nisi viverra nulla, eget interdum erat diam eu mi. Sed pellentesque augue non purus suscipit pulvinar. Pellentesque ultricies, lacus egestas bibendum consequat, diam lacus scelerisque metus, ut eleifend ante mauris id diam. Phasellus sit amet egestas nulla. Integer nibh nisi, efficitur vel condimentum nec, ornare non augue. Aenean dignissim semper lorem, sed imperdiet leo fermentum id. Nulla faucibus velit eleifend risus pretium ornare.', '22-12-19');
+
+insert into ARTICLE values(Null, 1, 'Neque porro quisquam est.', 'Sed convallis quam nec ex efficitur, ut consectetur leo sollicitudin. Sed tempus nibh a erat accumsan dapibus. Aenean congue nulla ac velit posuere eleifend. Pellentesque consectetur blandit neque quis consequat. Donec maximus eu odio eget malesuada. Mauris non tristique dolor, quis accumsan arcu. Duis et dictum felis, fermentum ornare sem. Fusce vitae scelerisque justo. Fusce lectus magna, ultrices convallis volutpat.', 'Maecenas in commodo enim. Ut mollis et dolor non posuere. Donec lacinia, justo sed tristique venenatis, urna mi auctor libero, vitae sollicitudin nunc tortor sed nisl. Phasellus quis efficitur diam. In porttitor, orci ac finibus efficitur, neque arcu vehicula justo, non sagittis diam odio ut eros. Ut tincidunt, erat eu gravida ullamcorper, mauris nulla malesuada urna, ut porttitor dui arcu vitae felis. Sed elit odio, volutpat sit amet venenatis in, sagittis interdum turpis. Morbi congue pulvinar lectus. Pellentesque venenatis ipsum non lorem vulputate, vel condimentum metus consequat. Sed aliquam arcu eget massa posuere, ut elementum dui tincidunt. Suspendisse at finibus diam. Quisque luctus sagittis nisl id eleifend. Quisque vehicula eu metus id accumsan. Quisque quis nisl semper, rutrum leo vitae, rutrum urna. Nullam neque purus, placerat sit amet euismod sit amet, ullamcorper at sapien. Ut at risus vulputate, fringilla felis nec, blandit lectus.
+Aliquam a egestas lorem, quis pulvinar enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut sodales, justo vitae malesuada tempus, elit nisi viverra nulla, eget interdum erat diam eu mi. Sed pellentesque augue non purus suscipit pulvinar. Pellentesque ultricies, lacus egestas bibendum consequat, diam lacus scelerisque metus, ut eleifend ante mauris id diam. Phasellus sit amet egestas nulla. Integer nibh nisi, efficitur vel condimentum nec, ornare non augue. Aenean dignissim semper lorem, sed imperdiet leo fermentum id. Nulla faucibus velit eleifend risus pretium ornare.', '23-12-19');
+
+insert into COMMENT values(Null, 'Maecenas in commodo enim. Ut mollis et dolor non posuere. Donec lacinia, justo sed tristique venenatis, urna mi auctor libero, vitae sollicitudin nunc tortor sed nisl. Phasellus quis efficitur diam. In porttitor, orci ac finibus efficitur, neque arcu vehicula justo, non sagittis diam odio ut eros. Ut tincidunt, erat eu gravida ullamcorper, mauris nulla malesuada urna, ut porttitor dui arcu vitae felis. Sed elit odio, volutpat sit amet venenatis in, sagittis interdum turpis. Morbi congue pulvinar lectus. Pellentesque venenatis ipsum non lorem vulputate, vel condimentum metus consequat. Sed aliquam arcu eget massa posuere, ut elementum dui tincidunt. Suspendisse at finibus diam. Quisque luctus sagittis nisl id eleifend. Quisque vehicula eu metus id accumsan. Quisque quis nisl semper, rutrum leo vitae, rutrum urna. Nullam neque purus, placerat sit amet euismod sit amet, ullamcorper at sapien. Ut at risus vulputate, fringilla felis nec, blandit lectus.
+Aliquam a egestas lorem, quis pulvinar enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut sodales, justo vitae malesuada tempus, elit nisi viverra nulla, eget interdum erat diam eu mi. Sed pellentesque augue non purus suscipit pulvinar. Pellentesque ultricies, lacus egestas bibendum consequat, diam lacus scelerisque metus, ut eleifend ante mauris id diam. Phasellus sit amet egestas nulla. Integer nibh nisi, efficitur vel condimentum nec, ornare non augue. Aenean dignissim semper lorem, sed imperdiet leo fermentum id. Nulla faucibus velit eleifend risus pretium ornare.', '22-12-19', 1, 1);
